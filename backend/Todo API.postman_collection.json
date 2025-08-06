@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "d19b811a-dcca-461b-ac9e-49233ba56123",
+		"name": "Todo API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42159668"
+	},
+	"item": [
+		{
+			"name": "GET All Todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200 OK\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should return an array of todos\", () => {\r",
+							"  const data = pm.response.json();\r",
+							"  pm.expect(data).to.be.an(\"array\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response is an array with at least one todo item\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the schema of the todo item\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+							"    \r",
+							"    responseData.forEach(function(todo) {\r",
+							"        pm.expect(todo).to.be.an('object');\r",
+							"        pm.expect(todo).to.have.all.keys('id', 'title', 'completed', 'created_at');\r",
+							"        pm.expect(todo.id).to.be.a('number');\r",
+							"        pm.expect(todo.title).to.be.a('string');\r",
+							"        pm.expect(todo.completed).to.be.a('boolean');\r",
+							"        pm.expect(todo.created_at).to.be.a('string');\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Title is a non-empty string\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+							"    responseData.forEach(function(todo) {\r",
+							"        pm.expect(todo.title).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"ทำการบ้าน\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 500\", () => {\r",
+							"  pm.response.to.have.status(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has the correct Content-Type header\", () => {\r",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains an error message field\", () => {\r",
+							"  const jsonData = pm.response.json();\r",
+							"  pm.expect(jsonData).to.have.property(\"error\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Error message must be a non-empty string\", () => {\r",
+							"  const jsonData = pm.response.json();\r",
+							"  pm.expect(jsonData.error).to.be.a(\"string\").and.not.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"ทำการบ้าน (แก้ไข)\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/todos/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"todos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Todo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200 OK\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should return success message\", () => {\r",
+							"  const data = pm.response.json();\r",
+							"  pm.expect(data.message).to.eql(\"Todo deleted\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/todos/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"todos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -14,22 +14,22 @@ body {
   height: 100vh;
   position: relative;
 }
-
+/* ปรับกรอบของกล่อง */
 .box {
   min-width: 650px;
-  max-width: 800px; /* เพิ่มจาก 480px */
+  max-width: 800px; 
   min-height: 500px;
-  max-height: 600px; /* เพิ่มจาก 500px */
+  max-height: 600px;
   border: 1px solid #ddd;
-  border-radius: 12px; /* เพิ่ม border-radius */
-  padding: 30px; /* เพิ่ม padding จาก 20px */
+  border-radius: 12px;
+  padding: 30px; 
   background-color: #fff;
   overflow-y: auto;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* เพิ่ม transform เพื่อจัดกลางจริงๆ */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* เพิ่ม shadow */
+  transform: translate(-50%, -50%); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
 }
 
 button.add-btn {
@@ -59,7 +59,7 @@ button.add-btn:hover {
 .list-group-item {
   border: 1px solid #e9ecef;
   transition: all 0.2s ease;
-  padding: 16px 20px; /* เพิ่ม padding */
+  padding: 16px 20px; 
 }
 
 .list-group-item:hover {
@@ -67,7 +67,7 @@ button.add-btn:hover {
   border-color: #dee2e6;
 }
 
-/* Responsive เพิ่มเติม */
+/* Responsive มือถือ */
 @media (max-width: 768px) {
   .box {
     max-width: 90vw;
