@@ -1,0 +1,89 @@
+body {
+  background-color: #d2e8ff;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container-fluid {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+  height: 100vh;
+  position: relative;
+}
+
+.box {
+  min-width: 650px;
+  max-width: 800px; /* เพิ่มจาก 480px */
+  min-height: 500px;
+  max-height: 600px; /* เพิ่มจาก 500px */
+  border: 1px solid #ddd;
+  border-radius: 12px; /* เพิ่ม border-radius */
+  padding: 30px; /* เพิ่ม padding จาก 20px */
+  background-color: #fff;
+  overflow-y: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* เพิ่ม transform เพื่อจัดกลางจริงๆ */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* เพิ่ม shadow */
+}
+
+button.add-btn {
+  transition: all 0.3s ease;
+}
+
+button.add-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* เอฟเฟกต์เด้งสำหรับปุ่มลบ */
+.delete-btn {
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  padding: 4px 8px !important;
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px) scale(1.1);
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545 !important;
+  text-decoration: none !important;
+}
+
+/* ปรับแต่ง list item ให้สวยขึ้น */
+.list-group-item {
+  border: 1px solid #e9ecef;
+  transition: all 0.2s ease;
+  padding: 16px 20px; /* เพิ่ม padding */
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+/* Responsive เพิ่มเติม */
+@media (max-width: 768px) {
+  .box {
+    max-width: 90vw;
+    max-height: 80vh;
+    padding: 25px;
+  }
+}
+
+@media (max-width: 576px) {
+  .box {
+    max-width: 95vw;
+    max-height: 85vh;
+    padding: 20px;
+  }
+  
+  .list-group-item {
+    padding: 12px 16px;
+  }
+}
